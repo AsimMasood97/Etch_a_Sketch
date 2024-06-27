@@ -2,9 +2,20 @@ let dimention = 10;
 let color = "black";
 const canvasSize = 400;
 
-function init() {
-	for(let i = 0; i<dimention*dimention; i++) {
-		sketch.innerHTML += `<div class = "box" style = "height: 40px; width: 40px;"></div>`;
+
+function createCanvas(size){
+	if (size > 0 && size <= 32) {
+		dimention = size;
+		let boxSize = canvasSize / size;
+		sketch.innerHTML = "";
+		for(let i = 0; i<dimention*dimention; i++) {
+
+			let newbox = document.createElement("div");
+			newbox.style.height = `${boxSize}px`;
+			newbox.style.width = `${boxSize}px`;
+			newbox.classList.add("box");
+			sketch.appendChild(newbox);
+		}
 	}
 }
 
@@ -14,24 +25,17 @@ let createBtn = document.querySelector(".createGrid");
 createBtn.addEventListener("click", (e) => {
 	e.preventDefault();
 	let size = document.querySelector("#gridSize").value;
-	if (size > 0 && size <= 32) {
-		dimention = size;
-		let boxSize = canvasSize / size;
-		sketch.innerHTML = "";
-		for(let i = 0; i<rows*cols; i++) {
-			sketch.innerHTML += `<div class = "box" style = "height: ${boxSize}px; width: ${boxSize}px;"></div>`;
-		}
-	}
+	createCanvas(size);
 });
 
 
 
 let mouseDown = false;
-sketch.addEventListener("mousedown", (e) => {
+window.addEventListener("mousedown", (e) => {
 	mouseDown = true;
 	if (e.target.classList.contains("box")) changeColor(e);
 });
-sketch.addEventListener("mouseup", (e) => {
+window.addEventListener("mouseup", (e) => {
 	mouseDown = false;
 });
 
@@ -51,4 +55,4 @@ sketch.addEventListener("dragstart", (e) => {
 });
 
 
-init();
+createCanvas(dimention);
