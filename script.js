@@ -1,41 +1,38 @@
+let dimention = 10;
+let color = "black";
+const canvasSize = 400;
+
+function init() {
+	for(let i = 0; i<dimention*dimention; i++) {
+		sketch.innerHTML += `<div class = "box" style = "height: 40px; width: 40px;"></div>`;
+	}
+}
+
 let sketch = document.querySelector(".SketchContainer");
 let createBtn = document.querySelector(".createGrid");
-const canvasSize = 400;
+
 createBtn.addEventListener("click", (e) => {
 	e.preventDefault();
-	let num = document.querySelector("#gridSize").value;
-	if (num > 0 && num <= 32) {
-		rows = cols = num;
-		let boxSize = canvasSize / num;
+	let size = document.querySelector("#gridSize").value;
+	if (size > 0 && size <= 32) {
+		dimention = size;
+		let boxSize = canvasSize / size;
 		sketch.innerHTML = "";
-		for (let i = 0; i < rows; i++) {
-			sketch.innerHTML += `<div class = "SubContainers" id = con${i}></div>`;
-			let SubCon = document.querySelector(`#con${i}`);
-			for (let j = 0; j < cols; j++) {
-				SubCon.innerHTML += `<div class = "box" style = "height: ${boxSize}px; width: ${boxSize}px;"></div>`;
-			}
+		for(let i = 0; i<rows*cols; i++) {
+			sketch.innerHTML += `<div class = "box" style = "height: ${boxSize}px; width: ${boxSize}px;"></div>`;
 		}
 	}
 });
 
-let rows = 10;
-let cols = 10;
-let color = "black";
-for (let i = 0; i < rows; i++) {
-	sketch.innerHTML += `<div class = "SubContainers" id = con${i}></div>`;
-	let SubCon = document.querySelector(`#con${i}`);
-	for (let j = 0; j < cols; j++) {
-		SubCon.innerHTML += `<div class = "box" style = "height: 40px; width: 40px;"></div>`;
-	}
-}
 
-let buttonPressed = false;
+
+let mouseDown = false;
 sketch.addEventListener("mousedown", (e) => {
-	buttonPressed = true;
+	mouseDown = true;
 	if (e.target.classList.contains("box")) changeColor(e);
 });
 sketch.addEventListener("mouseup", (e) => {
-	buttonPressed = false;
+	mouseDown = false;
 });
 
 function changeColor(e) {
@@ -44,7 +41,14 @@ function changeColor(e) {
 }
 
 sketch.addEventListener("mouseover", (e) => {
-	if (buttonPressed && e.target.classList.contains("box")) {
+	if (mouseDown && e.target.classList.contains("box")) {
 		changeColor(e);
 	}
 });
+
+sketch.addEventListener("dragstart", (e) => {
+	e.preventDefault();
+});
+
+
+init();

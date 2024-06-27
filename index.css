@@ -1,7 +1,10 @@
 .box {
-    border: 2px solid black;
+    
 }
 
-.SubContainers {
+.SketchContainer {
     display: flex;
+    flex-wrap: wrap;
+    width: 400px;
+    border: 2px solid black;
 }
