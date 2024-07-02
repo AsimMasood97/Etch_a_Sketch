@@ -19,9 +19,35 @@
 .name {
     font-size: 55px;
     font-weight: bolder;
+    text-align: center;
+    padding-top: 50px;
 }
 
 .sizeForm {
     display: flex;
     flex-direction: column;
+}
+
+#colorPreview{
+    height: 15px;
+    width: 15px;
+}
+
+#solidBtn {
+    display: flex;
+    align-items: center;
+    gap :3px;
+}
+
+.secondContainer {
+    display: flex;
+    flex-direction: column;
+    gap :10px;
+}
+
+.parentContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
 }
