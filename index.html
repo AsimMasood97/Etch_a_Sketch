@@ -13,21 +13,21 @@
     <div class="name">Etch a Sketch</div>
     <div class="parentContainer">
         <div class="mainContainer">
+            <div class="SketchContainer"></div>
             <form class="sizeForm">
                 <input type="number" name="gridSize" id="gridSize" placeholder="Enter size (1-32)">
                 <button class="createGrid">
                     Resize
                 </button>
             </form>
-            <div class="SketchContainer"></div>
         </div>
         <div class="secondContainer">
-            <button id="solidBtn">
-                <div id="colorPreview"></div>Solid Color
+            <button id="solidBtn" class="menuBtns">
+                <input type="color" id="colorPreview"></input>Solid Color
             </button>
-            <button id = "rgbBtn">RGB Colors</button>
-            <button id = "eraserBtn">Eraser</button>
-            <button class="clearBtn">Clear</button>
+            <button id = "rgbBtn" class="menuBtns">RGB Colors</button>
+            <button id = "eraserBtn" class="menuBtns">Eraser</button>
+            <button id = "clearBtn" class="menuBtns">Clear</button>
         </div>
     </div>
 </body>

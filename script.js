@@ -1,5 +1,5 @@
 let dimention = 10;
-let color = "black";
+let color = "";
 let tool = "solid";
 const canvasSize = 400;
 
@@ -13,6 +13,7 @@ function createCanvas(size) {
 			newbox.style.height = `${boxSize}px`;
 			newbox.style.width = `${boxSize}px`;
 			newbox.classList.add("box");
+			newbox.style.backgroundColor = "white";
 			sketch.appendChild(newbox);
 		}
 	}
@@ -20,6 +21,9 @@ function createCanvas(size) {
 
 let sketch = document.querySelector(".SketchContainer");
 let createBtn = document.querySelector(".createGrid");
+let colorSelector = document.querySelector("#colorPreview");
+color = colorSelector.value; 
+console.log(color);
 
 createBtn.addEventListener("click", (e) => {
 	e.preventDefault();
@@ -61,14 +65,12 @@ sketch.addEventListener("dragstart", (e) => {
 	e.preventDefault();
 });
 
-document.querySelector(".clearBtn").addEventListener("click", (e) => {
+document.querySelector("#clearBtn").addEventListener("click", (e) => {
 	sketch.querySelectorAll("*").forEach((dec) => {
 		dec.style.backgroundColor = "white";
 	});
 });
 
-let colorPreview = document.querySelector("#colorPreview");
-colorPreview.style.backgroundColor = color;
 createCanvas(dimention);
 
 let erasorBtn = document.querySelector("#eraserBtn");
@@ -84,4 +86,8 @@ solidBtn.addEventListener("click", e=>{
 let rgbBtn = document.querySelector("#rgbBtn");
 rgbBtn.addEventListener("click", e=>{
 	tool = "RGB";
+})
+
+colorSelector.addEventListener("input", e=>{
+	color = e.target.value
 })
